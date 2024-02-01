@@ -79,7 +79,7 @@ function display(item, clipboardText) {
                     window.editing = false
                 } else {
                     window.editing = true
-                    utools.setSubInputValue(EDITING_TIPS)
+                    utools.setSubInputValue(`${EDITING_TIPS}${itemData.tag}`)
                 }
             }
         }
