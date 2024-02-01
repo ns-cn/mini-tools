@@ -1,3 +1,3 @@
-# paste-mini(剪贴板MINI)
-一个utools插件:A paste plugin for utools
+# paste-mini
 
+`paste-mini`（剪切板Mini），一个utools剪切板管理插件

@@ -15,7 +15,7 @@ window.exports = {
                 timer = setInterval(() => {
                     // 读取剪贴板内容  
                     const text = clipboard.readText()
-                    if (last !== text) {
+                    if (last !== text && text !== "") {
                         last = text
                         update(text)
                         if (!window.editing) {
