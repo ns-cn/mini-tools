@@ -1,15 +1,68 @@
+const TYPE_LIST = "PAGE_LIST"
+const TYPE_EDIT = "PAGE_EDIT"
+const TYPE_HELP = "PAGE_HELP"
+const db = require("./core_db")
 
-const COPY_MOD = "PASTE-MINI-COPY-MODEL"
-const MUTE = "PASTE-MINI-MUTE"
+const PageList = {
+    type: TYPE_LIST,
+    enter: (action, callbackSetList) => {
+        utools.setSubInputValue("")
+        callbackSetList(db.getNewest())
+    },
+    search: (action, searchWord, callbackSetList) => {
+        if (searchWord === "?" || searchWord === "？") {
+            PageHelp.enter(action, callbackSetList, PageList)
+            window.currentPage = PageHelp
+            // window.currentPage.enter(action, callbackSetList, PageList)
+        } else if (window.editing) {
+            window.eitingTag = searchWord
+            if (!searchWord.startsWith(db.DITING_TIPS)) {
+                utools.setSubInputValue(db.EDITING_TIPS + searchWord)
+            }
+        } else {
+            window.keyword = searchWord
+            callbackSetList(db.getNewest())
+        }
+    },
+    select: (action, itemData, callbackSetList) => {
+        if (itemData.selectable) {
+            itemData.selectable(itemData, callbackSetList)
+        }
+    },
+}
+
+
+const PageHelp = {
+    type: TYPE_HELP,
+    refresh: (action, callbackSetList) => {
+        showHint(callbackSetList)
+    },
+    enter: (action, callbackSetList, sourcePage) => {
+        showHint(callbackSetList)
+    },
+    search: (action, searchWord, callbackSetList) => {
+        console.log("帮助页面搜索")
+        if (searchWord !== "?" || searchWord !== "？") {
+            window.currentPage = PageList
+            window.currentPage.search(action, searchWord, callbackSetList)
+        }
+    },
+    select: (action, itemData, callbackSetList) => {
+        if (itemData.selectable) {
+            itemData.selectable(itemData, callbackSetList)
+        }
+    },
+}
+
 function showHint(callbackSetList) {
-    const copyAndKeep = utools.dbStorage.getItem(COPY_MOD)
-    const mute = utools.dbStorage.getItem(MUTE)
+    const copyAndKeep = db.getDbStorageItem(db.CACHE_COPY_MOD)
+    const mute = db.getDbStorageItem(db.CACHE_MUTE)
     callbackSetList([
         {
             title: `一、🔧拷贝设置`,
             description: `当前模式: ${copyAndKeep ? "□拷贝但不隐藏窗口(适合简易编辑模式)" : "☑拷贝并隐藏窗口(适合工作模式)"},(选中切换)`,
             selectable: (itemData, callbackSetList) => {
-                utools.dbStorage.setItem(COPY_MOD, !copyAndKeep)
+                db.setDbStorageItem(db.CACHE_COPY_MOD, !copyAndKeep)
                 showHint(callbackSetList)
             }
         },
@@ -17,7 +70,7 @@ function showHint(callbackSetList) {
             title: `二、⏰提醒设置`,
             description: `当前模式: ${mute ? "□拷贝时不提醒" : "☑拷贝时提醒(弹窗,需开启utools通知权限)"},(选中切换)`,
             selectable: (itemData, callbackSetList) => {
-                utools.dbStorage.setItem(MUTE, !mute)
+                db.setDbStorageItem(db.CACHE_MUTE, !mute)
                 showHint(callbackSetList)
             }
         },
@@ -25,7 +78,7 @@ function showHint(callbackSetList) {
             title: `三、♻️清空所有已存储记录`,
             description: `清空所有已存储的剪贴板记录`,
             selectable: (itemData, callbackSetList) => {
-                utools.dbStorage.removeItem("PASTE-MINI")
+                db.removeDbStorageItem(db.CACHE_ALL)
                 utools.showNotification(`已清空所有剪贴板历史记录`)
             }
         },
@@ -45,6 +98,11 @@ function showHint(callbackSetList) {
     ])
 }
 
+
 module.exports = {
-    showHint,
+    LIST: PageList,
+    TYPE_LIST,
+    TYPE_EDIT,
+    HELP: PageHelp,
+    TYPE_HELP,
 }
