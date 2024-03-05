@@ -63,7 +63,7 @@ function watchMemeory(callbackSetList) {
         if(pages.LIST === window.currentPage?.type){
             callbackSetList(getNewest())
         }
-    }, 10)
+    }, 50)
 }
 
 function update(text, tag) {

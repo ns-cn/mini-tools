@@ -16,7 +16,7 @@ const PageList = {
             // window.currentPage.enter(action, callbackSetList, PageList)
         } else if (window.editing) {
             window.eitingTag = searchWord
-            if (!searchWord.startsWith(db.DITING_TIPS)) {
+            if (!searchWord.startsWith(db.EDITING_TIPS)) {
                 utools.setSubInputValue(db.EDITING_TIPS + searchWord)
             }
         } else {
