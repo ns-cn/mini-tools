@@ -1,0 +1,33 @@
+@import 'vuetify/styles';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.fill-height {
+  height: 100vh;
+}
+
+#app {
+  height: 100%;
+}
+
+.v-application {
+  min-height: 100vh;
+}
+
+/* 移除之前的网格布局相关样式 */
+@media (min-width: 1024px) {
+  body {
+    place-items: unset;
+  }
+
+  #app {
+    display: block;
+    padding: 0;
+    max-width: none;
+  }
+}
