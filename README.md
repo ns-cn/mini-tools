@@ -1,9 +1,40 @@
 # mini-tools
 
 A collection of small tools merged from various personal repositories.
-
 Each tool lives under `tools/<name>/` with its full original commit history preserved via `git subtree`.
 
 ## Tools
 
-<!-- Will be filled in after the merge completes. -->
+| Path | Description |
+| --- | --- |
+| `tools/FeiO` | FeiO, Faker of FeiQ |
+| `tools/paste-mini` | paste plugins for utools |
+| `tools/keeper` | 类似linux的cron，一个简易的定时任务处理程序 |
+| `tools/seatapi` | seatable-api for Go |
+| `tools/vcs2vcs` | vcs2vcs |
+| `tools/go_docker_k8s` | go-docker-k8s |
+| `tools/zhell` | copy of shell |
+| `tools/snqbus` | Bus for all kinds of data |
+| `tools/R1` | Revolution：从Go等语言函数多返回值的特性获取的灵感，用于针对异常的特殊处理 |
+| `tools/termusic` | 命令行音乐播放器 |
+| `tools/chinization` | 常见系统、语言、工具的镜像站或仓库源！ |
+| `tools/svnall` | terminal tools to operate svn between different repositories |
+
+## Working with subtrees
+
+The repos were merged with `git subtree`, so each tool's history is queryable as if it were a normal subdirectory:
+
+```bash
+# View a tool's history
+git log -- tools/seatapi
+
+# Pull in updates from the original repo (if you still have it locally)
+git subtree pull --prefix=tools/seatapi <path-to-seatapi-clone> main
+```
+
+## Notes on source repos
+
+Of the originally proposed 16 repos, four were no longer available at merge time and were skipped:
+
+- `up2ee` — transferred to `web-jokers/up2ee`
+- `ylgy.mini`, `bookan.com`, `lianjia.com` — returned 404 (deleted or renamed)
