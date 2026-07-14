@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  name: hello-deployment
+  namespace: default
+  labels:
+    app: hello
+spec:
+  replicas: 2 # 副本数量
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-container
+        image: tangyujun/hello # 这里需要替换为你的镜像地址
+        ports:
+        - containerPort: 80 # 容器端口
