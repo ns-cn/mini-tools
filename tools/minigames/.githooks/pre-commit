@@ -1,0 +1,3 @@
+#!/bin/sh
+node scripts/generate-version.js
+git add src/version.js
