@@ -1,0 +1,36 @@
+{
+  "name": "Paste Mini",
+  "version": "1.0.0",
+  "description": "剪切板 mini: 为剪切板减负(仅支持纯文本)",
+  "preload": "main.js",
+  "logo": "logo.png",
+  "features": [
+    {
+      "code": "paste",
+      "explain": "剪切板mini",
+      "cmds": [
+        "剪贴板MINI",
+        "剪切板MINI",
+        "粘贴板MINI",
+        "拷贝",
+        "copy",
+        "paste",
+        "pm"
+      ]
+    },
+    {
+      "code": "paste-tag",
+      "explain": "剪切板mini维护",
+      "cmds": [
+      ]
+    }
+  ],
+  "scripts": {
+    "rmbuild": "rm -rf dist && rm -f *.upx",
+    "build": "ux upx && rsync -avz dist/*.upx ~/path/to/your/utools/plugins",
+    "dev": "ux dev"
+  },
+  "dependencies": {
+    "ux": "^0.3.7"
+  }
+}
