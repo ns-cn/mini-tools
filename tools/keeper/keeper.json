@@ -1,0 +1,27 @@
+[
+  {
+    "cron": "*/1 * * * *",
+    "name": "启动ireader",
+    "commands": [
+      "pkill ireader",
+      "ireader --load fims.json >> ~/logs/ireader.log"
+    ],
+    "dir": "/home/luomujian/ireader",
+    "specific_shell": true,
+    "shell": ""
+  },
+  {
+    "cron": "*/1 * * * *",
+    "name": "测试周期执行6",
+    "commands": [
+      "ls -al"
+    ]
+  },
+  {
+    "cron": "*/1 * * * *",
+    "name": "测试周期执行5",
+    "commands": [
+      "ls -al"
+    ]
+  }
+]
