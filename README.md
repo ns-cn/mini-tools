@@ -27,6 +27,7 @@ Each tool lives under `tools/<name>/` with its full original commit history pres
 | `tools/muddler` | SVN branch merge tool (macOS/Linux only) |
 | `tools/froute` | (private) routing utility |
 | `tools/gojenkins` | Jenkins API Client in Go (fork) |
+| `tools/goter` | Go CLI scaffold (基于cobra的终端应用脚手架) |
 
 ## Working with subtrees
 
@@ -47,4 +48,4 @@ Of the originally proposed 16 repos, four were no longer available at merge time
 - `up2ee` — transferred to `web-jokers/up2ee`
 - `ylgy.mini`, `bookan.com`, `lianjia.com` — returned 404 (deleted or renamed)
 
-Three additional repos (`minigames`, `goout`, `windows`) were merged in a second pass. `i` was merged in a third pass. `fakervice`, `terkins`, `muddler`, `froute`, `gojenkins` were merged in a fourth pass.
+Three additional repos (`minigames`, `goout`, `windows`) were merged in a second pass. `i` was merged in a third pass. `fakervice`, `terkins`, `muddler`, `froute`, `gojenkins` were merged in a fourth pass. `goter` was merged in a fifth pass.
